@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Larissa Machado — Content Strategist & Brand Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1A1A1A;
+    --gold: #C8A97E;
+    --gold-light: #E8D4B8;
+    --paper: #F5F2EE;
+    --gray: #6B6B6B;
+    --gray-light: #B4B2A9;
+    --white: #FFFFFF;
+    --border: rgba(200,169,126,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid var(--border);
+    background: rgba(26,26,26,0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(200,169,126,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 720px; position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 0.5px solid var(--gold);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero-name span { color: var(--gold); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--gray-light);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-desc strong { color: var(--paper); font-weight: 400; }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--paper);
+    border: 0.5px solid rgba(245,242,238,0.3);
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 0.5px solid var(--border);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; position: relative; z-index: 1; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    color: var(--gray-light);
+    max-width: 500px;
+    line-height: 1.7;
+  }
+
+  .section-header { margin-bottom: 3.5rem; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--gray-light);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .about-text p strong { color: var(--paper); font-weight: 500; }
+
+  .about-right { display: flex; flex-direction: column; gap: 1rem; }
+
+  .about-card {
+    background: rgba(255,255,255,0.03);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .about-card-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .about-card-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--paper);
+  }
+
+  .about-card-sub {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  /* CASES */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .case-card {
+    background: rgba(255,255,255,0.03);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .case-card:hover { border-color: rgba(200,169,126,0.4); transform: translateY(-2px); }
+  .case-card:hover::before { opacity: 1; }
+
+  .case-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(200,169,126,0.1);
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .case-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .case-context {
+    font-size: 13px;
+    color: var(--gray-light);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .case-items { list-style: none; margin-bottom: 1.25rem; }
+  .case-items li {
+    font-size: 13px;
+    color: var(--gray-light);
+    padding: 4px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .case-items li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  .case-result {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(200,169,126,0.08);
+    border: 0.5px solid rgba(200,169,126,0.3);
+    border-radius: 8px;
+    padding: 8px 14px;
+  }
+
+  .case-result-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .case-result-label { font-size: 12px; color: var(--gray-light); }
+
+  /* TSB FEATURE */
+  .tsb-card {
+    background: rgba(200,169,126,0.05);
+    border: 0.5px solid rgba(200,169,126,0.3);
+    border-radius: 20px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .tsb-mote {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .tsb-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .tsb-desc {
+    font-size: 0.9rem;
+    color: var(--gray-light);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .tsb-pillars { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .tsb-pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    border: 0.5px solid var(--border);
+  }
+
+  .tsb-pillar-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .tsb-pillar-text { font-size: 13px; color: var(--gray-light); line-height: 1.5; }
+  .tsb-pillar-text strong { color: var(--paper); font-weight: 500; }
+
+  /* WRITING SAMPLES */
+  .writing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .writing-card {
+    background: rgba(255,255,255,0.03);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.2s;
+  }
+
+  .writing-card:hover { border-color: rgba(200,169,126,0.4); }
+
+  .writing-industry {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .writing-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--paper);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  .writing-lang {
+    font-size: 10px;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    background: rgba(255,255,255,0.03);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .skill-group-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .skill-tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(245,242,238,0.05);
+    border: 0.5px solid rgba(245,242,238,0.1);
+    color: var(--gray-light);
+  }
+
+  /* BRANDS */
+  .brands-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .brand-tag {
+    font-size: 13px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.03);
+    border: 0.5px solid var(--border);
+    color: var(--gray-light);
+    transition: all 0.2s;
+  }
+
+  .brand-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* CONTACT */
+  .contact-section {
+    background: rgba(200,169,126,0.04);
+    border-top: 0.5px solid var(--border);
+    text-align: center;
+  }
+
+  .contact-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .contact-title span { color: var(--gold); }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--gray-light);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-note { font-size: 12px; color: var(--gray); }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .tsb-card { grid-template-columns: 1fr; gap: 2rem; }
+    .writing-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Larissa Machado</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#writing">Writing</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Open to remote opportunities</div>
+    <h1 class="hero-name">Larissa<br><span>Machado</span></h1>
+    <p class="hero-desc">
+      Content Strategist & Brand Builder. <strong>6+ years</strong> connecting brands to audiences through strategy, copy, and systems that actually work. Founder of <strong>The Signal Brief</strong> — a content brand built in public, in English, no shortcuts.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:larissalm.limachado@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="https://linkedin.com/in/larissa-machado-content" target="_blank" class="btn btn-secondary">LinkedIn ↗</a>
+      <a href="https://substack.com/@thesignalbriefbylari" target="_blank" class="btn btn-secondary">The Signal Brief ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Years experience</div>
+      </div>
+      <div>
+        <div class="stat-num">1,400+</div>
+        <div class="stat-label">Articles produced</div>
+      </div>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Simultaneous clients</div>
+      </div>
+      <div>
+        <div class="stat-num">PT+EN</div>
+        <div class="stat-label">Two languages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Strategy first.<br>Always.</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a content strategist and brand builder with over six years of experience helping B2B and B2C brands connect with their audiences — through SEO content, editorial strategy, email marketing, and campaigns that have a reason to exist.</p>
+      <p>For three years at <strong>Raised Agency</strong>, I grew from copywriting intern to Content Coordinator, managing 10+ clients simultaneously, leading an editorial team, and building the kind of cross-functional muscle that only agency life teaches you.</p>
+      <p>I then took a deliberate step: I left to build something of my own. <strong>The Signal Brief</strong> is that something — a content brand in English, built in public, at the intersection of marketing strategy, AI tools, and honest documentation of what actually works.</p>
+      <p>I hold a <strong>BA in Public Relations</strong> (FMU, São Paulo) and an <strong>MSc in Digital Marketing and Business Transformation</strong> from Rome Business School, Italy.</p>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-card">
+        <div class="about-card-label">Current role</div>
+        <div class="about-card-value">Founder, The Signal Brief</div>
+        <div class="about-card-sub">+ Freelance Content Strategist</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Education</div>
+        <div class="about-card-value">MSc Digital Marketing</div>
+        <div class="about-card-sub">Rome Business School, Italy · 2024</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Location & availability</div>
+        <div class="about-card-value">São Bernardo do Campo, Brazil</div>
+        <div class="about-card-sub">Available for remote roles · GMT-3</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Languages</div>
+        <div class="about-card-value">Portuguese (native) · English (C1)</div>
+        <div class="about-card-sub">Italian (B1 basic)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORK / CASES -->
+<section id="work">
+  <div class="section-header reveal">
+    <div class="section-label">Selected work</div>
+    <h2 class="section-title">Cases that<br>moved the needle.</h2>
+    <p class="section-desc">Real work. Real results. No inflated numbers.</p>
+  </div>
+
+  <div class="cases-grid">
+
+    <div class="case-card reveal">
+      <div class="case-tag">Email Strategy · US Market</div>
+      <h3 class="case-title">Gade Nutrition — Turning email into a revenue channel</h3>
+      <p class="case-context">The brand was sending daily emails with poor results. Every message was commercial, with no variety, no relationship-building, and no strategy behind it. The channel existed but wasn't being used.</p>
+      <ul class="case-items">
+        <li>Proposed a 3-editorial system: commercial, educational, and institutional</li>
+        <li>Changed signature from "the team" to a real person — more voice, more proximity</li>
+        <li>Simplified tone: shorter, conversational, direct emails</li>
+        <li>A/B tested subject lines to improve open rates</li>
+        <li>Managed content strategy across Gade, GFlow, and Joy Labs simultaneously</li>
+      </ul>
+      <div class="case-result">
+        <div class="case-result-num">$400</div>
+        <div class="case-result-label">direct sales from a single educational email campaign</div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-tag">Editorial Management · Agency</div>
+      <h3 class="case-title">Raised Agency — Building an editorial operation from the inside</h3>
+      <p class="case-context">Joined as a copywriting intern in 2021. Over four years, grew into Content Coordinator — managing the editorial strategy for over 10 clients across B2B and B2C industries simultaneously.</p>
+      <ul class="case-items">
+        <li>Led content strategy and editorial planning for 10+ accounts at once</li>
+        <li>Defined content themes and editorial calendars based on data, trends, and benchmarking</li>
+        <li>Managed a team of writers: tone of voice, quality, and consistency</li>
+        <li>Served as main client contact for content delivery and alignment</li>
+        <li>Analysed performance metrics (engagement, reach, traffic) for continuous optimisation</li>
+      </ul>
+      <div class="case-result">
+        <div class="case-result-num">10+</div>
+        <div class="case-result-label">clients managed simultaneously as Content Coordinator</div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-tag">Amazon Content · E-commerce</div>
+      <h3 class="case-title">Gade Nutrition — Product marketing for the US Amazon market</h3>
+      <p class="case-context">Developed product marketing materials for an international e-commerce operation, working entirely in English with a remote, cross-functional team based in the US.</p>
+      <ul class="case-items">
+        <li>Created A+ content, technical descriptions, and keyword-driven copy for Amazon US</li>
+        <li>Built content based on consumer behaviour data and search intent analysis</li>
+        <li>Contributed to website restructuring: page architecture, UX copy, and conversion flow</li>
+        <li>Collaborated daily with marketing, design, and product teams across time zones</li>
+      </ul>
+      <div class="case-result">
+        <div class="case-result-num">EN</div>
+        <div class="case-result-label">full content operation delivered in English for a US market</div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-tag">Freelance · Multi-industry</div>
+      <h3 class="case-title">1,400+ articles across 15+ industries</h3>
+      <p class="case-context">Over five years of freelance content work, producing strategic content for brands across tech, health, fintech, education, beauty, and more — in both Portuguese and English.</p>
+      <ul class="case-items">
+        <li>500+ articles for Bridgeway Content (ongoing)</li>
+        <li>900+ articles for Web Estratégica</li>
+        <li>Clients include: Amplimed, Grupo Fleury, Bioderma, Bitso, Omie, AnyDB (EN)</li>
+        <li>SEO-first approach: keyword research, content architecture, organic performance</li>
+      </ul>
+      <div class="case-result">
+        <div class="case-result-num">1,400+</div>
+        <div class="case-result-label">articles produced across PT and EN markets</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TSB FEATURE -->
+  <div style="margin-top: 1.5rem;" class="reveal">
+    <div class="tsb-card">
+      <div>
+        <div class="tsb-mote">Personal project · Built in public</div>
+        <h3 class="tsb-title">The Signal Brief by Lari</h3>
+        <p class="tsb-desc">
+          A content brand at the intersection of marketing expertise, AI tools, and digital product creation. Built in English, from zero, with no shortcuts and no guru energy. Every piece of content has a reason to exist. Every product was used before it was sold.
+        </p>
+        <div class="hero-actions">
+          <a href="https://instagram.com/tsbbylari_" target="_blank" class="btn btn-secondary" style="font-size:12px;padding:8px 16px;">Instagram ↗</a>
+          <a href="https://substack.com/@thesignalbriefbylari" target="_blank" class="btn btn-secondary" style="font-size:12px;padding:8px 16px;">Newsletter ↗</a>
+          <a href="https://gumroad.com" target="_blank" class="btn btn-primary" style="font-size:12px;padding:8px 16px;">Product ↗</a>
+        </div>
+      </div>
+      <div class="tsb-pillars">
+        <div class="tsb-pillar">
+          <div class="tsb-pillar-dot"></div>
+          <div class="tsb-pillar-text"><strong>Building in public</strong> — honest updates on what's working, what isn't, and what the numbers actually look like</div>
+        </div>
+        <div class="tsb-pillar">
+          <div class="tsb-pillar-dot"></div>
+          <div class="tsb-pillar-text"><strong>AI for marketers</strong> — tools and workflows filtered for communications professionals, not developers</div>
+        </div>
+        <div class="tsb-pillar">
+          <div class="tsb-pillar-dot"></div>
+          <div class="tsb-pillar-text"><strong>Content strategy</strong> — real strategy, not "post every day" advice</div>
+        </div>
+        <div class="tsb-pillar">
+          <div class="tsb-pillar-dot"></div>
+          <div class="tsb-pillar-text"><strong>Digital products</strong> — The Content Repurposing System: 1 idea → 10 content formats, available on Gumroad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WRITING SAMPLES -->
+<section id="writing">
+  <div class="section-header reveal">
+    <div class="section-label">Writing samples</div>
+    <h2 class="section-title">Range across<br>industries.</h2>
+    <p class="section-desc">A selection of published work across verticals — in English and Portuguese.</p>
+  </div>
+
+  <div class="writing-grid">
+    <div class="writing-card reveal">
+      <div class="writing-industry">Software B2B · EN</div>
+      <div class="writing-title">Inventory Control System: Key Features for Better Stock Control</div>
+      <div class="writing-lang">🇬🇧 English</div>
+    </div>
+    <div class="writing-card reveal">
+      <div class="writing-industry">Software B2B · EN</div>
+      <div class="writing-title">Vendor Risk Management: How to Identify, Assess, and Monitor</div>
+      <div class="writing-lang">🇬🇧 English</div>
+    </div>
+    <div class="writing-card reveal">
+      <div class="writing-industry">Health & Wellness · EN</div>
+      <div class="writing-title">The herbal wellness trend: what Gen Z can teach us</div>
+      <div class="writing-lang">🇬🇧 English</div>
+    </div>
+    <div class="writing-card reveal">
+      <div class="writing-industry">Health & Wellness · EN</div>
+      <div class="writing-title">Why Ashwagandha and Maca Root should be part of your daily routine</div>
+      <div class="writing-lang">🇬🇧 English</div>
+    </div>
+    <div class="writing-card reveal">
+      <div class="writing-industry">Medical Software · PT</div>
+      <div class="writing-title">Softwares médicos: o que são e como ajudam na gestão clínica</div>
+      <div class="writing-lang">🇧🇷 Portuguese</div>
+    </div>
+    <div class="writing-card reveal">
+      <div class="writing-industry">Fintech · PT</div>
+      <div class="writing-title">OKR e KPI: entenda as diferenças e como usar na sua estratégia</div>
+      <div class="writing-lang">🇧🇷 Portuguese</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BRANDS -->
+<section>
+  <div class="section-header reveal">
+    <div class="section-label">Brands worked with</div>
+    <h2 class="section-title">Trusted across<br>industries.</h2>
+  </div>
+  <div class="brands-list reveal">
+    <span class="brand-tag">Gade Nutrition</span>
+    <span class="brand-tag">Amplimed</span>
+    <span class="brand-tag">Grupo Fleury</span>
+    <span class="brand-tag">Bioderma</span>
+    <span class="brand-tag">Institut Esthederm</span>
+    <span class="brand-tag">Bitso</span>
+    <span class="brand-tag">Omie</span>
+    <span class="brand-tag">AnyDB</span>
+    <span class="brand-tag">Zeppini</span>
+    <span class="brand-tag">Kuka</span>
+    <span class="brand-tag">Genium Education</span>
+    <span class="brand-tag">Lab-to-Lab Pardini</span>
+    <span class="brand-tag">Porto Next</span>
+    <span class="brand-tag">Santa Fé Investimentos</span>
+    <span class="brand-tag">VitalLab</span>
+    <span class="brand-tag">Clean Medical</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section>
+  <div class="section-header reveal">
+    <div class="section-label">Skills & tools</div>
+    <h2 class="section-title">The full stack.</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Core skills</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Content Strategy</span>
+        <span class="skill-tag">Brand Strategy</span>
+        <span class="skill-tag">Copywriting</span>
+        <span class="skill-tag">SEO</span>
+        <span class="skill-tag">Email Marketing</span>
+        <span class="skill-tag">Editorial Planning</span>
+        <span class="skill-tag">AI for Marketing</span>
+        <span class="skill-tag">Campaign Planning</span>
+        <span class="skill-tag">Performance Analysis</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Platforms & tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Google Analytics 4</span>
+        <span class="skill-tag">Meta Ads</span>
+        <span class="skill-tag">Google Ads</span>
+        <span class="skill-tag">Klaviyo</span>
+        <span class="skill-tag">Mailchimp</span>
+        <span class="skill-tag">RD Station</span>
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">Amazon Seller Central</span>
+        <span class="skill-tag">Notion</span>
+        <span class="skill-tag">Canva</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Ways of working</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Remote-first</span>
+        <span class="skill-tag">Async communication</span>
+        <span class="skill-tag">Cross-functional</span>
+        <span class="skill-tag">Building in public</span>
+        <span class="skill-tag">Data-informed</span>
+        <span class="skill-tag">Deadline-driven</span>
+        <span class="skill-tag">Multi-account mgmt</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="reveal">
+    <div class="section-label" style="text-align:center;">Let's work together</div>
+    <h2 class="contact-title">Ready when<br><span>you are.</span></h2>
+    <p class="contact-sub">Open to remote full-time and contract roles in content strategy, brand, or digital marketing.</p>
+    <div class="contact-links">
+      <a href="mailto:larissalm.limachado@gmail.com" class="btn btn-primary">larissalm.limachado@gmail.com</a>
+      <a href="https://linkedin.com/in/larissa-machado-content" target="_blank" class="btn btn-secondary">LinkedIn ↗</a>
+      <a href="https://substack.com/@thesignalbriefbylari" target="_blank" class="btn btn-secondary">The Signal Brief ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Larissa Machado</div>
+  <div class="footer-note">Content Strategist & Brand Builder · São Paulo, Brazil · GMT-3</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
